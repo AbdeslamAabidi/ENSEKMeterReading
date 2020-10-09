@@ -1,0 +1,29 @@
+<h1>Meter Reading</h1>
+
+<div>
+
+  <br>
+  <input type="file" #csvReader name="Upload CSV" id="csvFileUpload" (change)="setCSV($event)" accept=".csv" />
+
+  <br><br>
+  <button class="btn btn-primary" (click)="uploadCSV()" [disabled]="csvFile == undefined || csvFile.srcElement.files.length == 0">Upload Meter Reading</button>
+  <h4 class="uploadingStatus">{{ uploadingStatus }}</h4>
+
+  <br><br>
+      <div *ngIf="uploadingStatus == 'FINISHED'">
+        <h4>RESULT:</h4>
+        <h5 class="">Successfull: {{ meterReadingReport.successfull.length }}</h5>
+        <ul class="uploadingStatus">
+          <li *ngFor="let meter of meterReadingReport.successfull; let index = index">
+            {{ meter.accountId }}
+          </li>
+        </ul>
+        <h5 class="">Failed: {{ meterReadingReport.failed.length }}</h5>
+        <ul class="errors">
+          <li *ngFor="let meter of meterReadingReport.failed; let index = index">
+            {{ meter.accountId }} : {{ meter.messages[0] }}
+          </li>
+        </ul>
+
+      </div>
+</div>

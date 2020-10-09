@@ -1,0 +1,8 @@
+.uploadingStatus {
+  margin-top: 15px;
+  color: green;
+}
+
+.errors {
+  color:red;
+}
